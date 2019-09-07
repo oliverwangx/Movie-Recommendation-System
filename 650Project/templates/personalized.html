@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Movie Main Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+
+  body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+  </style>
+</head>
+<body>
+
+<script>
+function myFunction() {
+    var user = document.getElementById("inputUserId").value;
+    var movie = document.getElementById("moviename").value;
+    var first = document.getElementById("gridRadios1").checked;
+    if (first) {
+      var base = "overview"
+    } else {
+      var base = "other"
+    }
+    if (movie) {
+      document.location.href = "/user/" + user + "+" + movie + "+" + base;
+    } else {
+      document.location.href = "/user/" + user + "+The Dark Knight+" + base;
+    }
+};
+</script>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="jumbotron" style="margin-bottom: 0">
+  <div class="container text-center">
+    <h1>Movie Recommender</h1>
+  </div>
+    <div class="col-sm-6 col-sm-offset-3">
+      <input type="name" class="form-control" id="inputUserId" value={{userid}}>
+    </div>
+    <div class="col-sm-6 col-sm-offset-3" style = "padding-top:10px">
+      <input type="name" class="form-control" id="moviename" value="{{moviename}}">
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+        <div class="form-check" style = "padding-top:10px">
+          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+          <label class="form-check-label" for="gridRadios1">
+            Overview
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+          <label class="form-check-label" for="gridRadios2">
+            Genre, Director, Cast, Crew
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-sm-offset-5">
+      <button type="submit" class="btn btn-secondary" onclick="myFunction()">Get My Recommendations</button>
+    </div>
+</div>
+
+
+
+
+<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#personalized">Recommendations For You</a></li>
+  <li><a data-toggle="tab" href="#similarMovies">Similar Movies</a></li>
+</ul>
+
+<div class="tab-content">
+  <div id="personalized" class="tab-pane fade in active">
+    <div class="container-fluid bg-3 text-center">
+      <h3>Recommendations For User {{userid}}</h3>
+    </div>
+
+  <div class="container-fluid bg-3 text-center">    
+  <div class="row">
+    <div class="col-sm-3">
+    <h5>{{personalizedMovies[0]}}</h5>
+      <img src="{{personalizedPics[0]}}" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-3"> 
+    <h5>{{personalizedMovies[1]}}</h5>
+      <img src="{{personalizedPics[1]}}" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-3"> 
+    <h5>{{personalizedMovies[2]}}</h5>
+      <img src="{{personalizedPics[2]}}" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-3">
+    <h5>{{personalizedMovies[3]}}</h5>
+      <img src="{{personalizedPics[3]}}" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+  </div>
+</div><br>
+
+<div class="container-fluid bg-3 text-center">    
+  <div class="row">
+    <div class="col-sm-3">
+    <h5>{{personalizedMovies[4]}}</h5>
+      <img src="{{personalizedPics[4]}}" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-3">
+    <h5>{{personalizedMovies[5]}}</h5>
+      <img src="{{personalizedPics[5]}}" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-3">
+    <h5>{{personalizedMovies[6]}}</h5>
+      <img src="{{personalizedPics[6]}}" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-3">
+    <h5>{{personalizedMovies[7]}}</h5>
+      <img src="{{personalizedPics[7]}}" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+  </div>
+</div><br><br>
+</div>
+
+  <div id="similarMovies" class="tab-pane fade">
+    <div class="container-fluid bg-3 text-center">
+      <h3>Similar Movies With {{moviename}}</h3>
+    </div>
+    <div class="container-fluid bg-3 text-center">    
+      <div class="row">
+        <div class="col-sm-3">
+          <h5>{{similarMovies[0]}}</h5>
+          <img src="{{similarPics[0]}}" class="img-responsive" style="width:100%" alt="Image">
+        </div>
+      <div class="col-sm-3"> 
+          <h5>{{similarMovies[1]}}</h5>
+      <img src="{{similarPics[1]}}" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-3"> 
+    <h5>{{similarMovies[2]}}</h5>
+      <img src="{{similarPics[2]}}" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-3">
+    <h5>{{similarMovies[3]}}</h5>
+      <img src="{{similarPics[3]}}" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+  </div>
+</div><br>
+
+<div class="container-fluid bg-3 text-center">    
+  <div class="row">
+    <div class="col-sm-3">
+    <h5>{{similarMovies[4]}}</h5>
+      <img src="{{similarPics[4]}}" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-3">
+    <h5>{{similarMovies[5]}}</h5>
+      <img src="{{similarPics[5]}}" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-3">
+    <h5>{{similarMovies[6]}}</h5>
+      <img src="{{similarPics[6]}}" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-3">
+    <h5>{{similarMovies[7]}}</h5>
+      <img src="{{similarPics[7]}}" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+  </div>
+</div><br><br>
+</div>
+</div>
+
+<footer class="container-fluid text-center">
+  <h4>"Everything I learned I learned from the movies."  -- Audrey Hepburn</h4>
+</footer>
+
+</body>
+</html>

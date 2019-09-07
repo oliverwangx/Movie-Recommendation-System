@@ -1,0 +1,161 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Movie Main Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+
+      /* Style the tab */
+    .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+    }
+
+    /* Style the buttons inside the tab */
+    .tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        font-size: 17px;
+    }
+
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+        background-color: #ddd;
+    }
+
+    /* Create an active/current tablink class */
+    .tab button.active {
+        background-color: #ccc;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+    }
+  </style>
+</head>
+<body>
+
+<script>
+function myFunction() {
+    var user = document.getElementById("inputUserId").value;
+    var movie = document.getElementById("moviename").value;
+    var first = document.getElementById("gridRadios1").checked
+    if (first) {
+      var base = "overview"
+    } else {
+      var base = "other"
+    }
+    if (movie) {
+      document.location.href = "/user/" + user + "+" + movie + "+" + base;
+    } else {
+      document.location.href = "/user/" + user + "+The Dark Knight+" + base;
+    }
+}
+</script>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="jumbotron">
+  <div class="container text-center">
+    <h1>Movie Recommender</h1>
+  </div>
+    <div class="col-sm-6 col-sm-offset-3">
+      <input type="name" class="form-control" id="inputUserId" placeholder="Your User ID...">
+    </div>
+    <div class="col-sm-6 col-sm-offset-3" style = "padding-top:10px">
+      <input type="name" class="form-control" id="moviename" placeholder="Similar Movies...ex.Dark Knights">
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+        <div class="form-check" style = "padding-top:10px">
+          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+          <label class="form-check-label" for="gridRadios1">
+            Overview
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+          <label class="form-check-label" for="gridRadios2">
+            Genre, Director, Cast, Crew
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-sm-offset-5">
+      <button type="submit" class="btn btn-secondary" onclick="myFunction()">Get My Recommendations</button>
+    </div>
+</div>
+  
+<div class="container-fluid bg-3 text-center">    
+  <div class="row">
+    <div class="col-sm-3">
+      <img src="https://m.media-amazon.com/images/M/MV5BNDVmOGI4MTMtYmNmNC00MTliLTlkYjQtYmU2N2EyNDk2YTAwXkEyXkFqcGdeQXVyMjM4NTM5NDY@._V1_SY1000_SX675_AL_.jpg" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-3"> 
+      <img src="https://m.media-amazon.com/images/M/MV5BZGY3ZWMyYjEtMDMzYi00NDQyLWE1MWEtMDNmMjRlOGVkNDc3XkEyXkFqcGdeQXVyODAzODU1NDQ@._V1_SY1000_CR0,0,675,1000_AL_.jpg" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-3"> 
+      <img src="https://m.media-amazon.com/images/M/MV5BMTY5MDg0NzA3MF5BMl5BanBnXkFtZTgwMTg1Njk4NjM@._V1_SY1000_CR0,0,674,1000_AL_.jpg" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-3">
+      <img src="https://m.media-amazon.com/images/M/MV5BNDg2NjIxMDUyNF5BMl5BanBnXkFtZTgwMzEzNTE1NTM@._V1_SY1000_CR0,0,629,1000_AL_.jpg" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+  </div>
+</div><br>
+
+<div class="container-fluid bg-3 text-center">    
+  <div class="row">
+    <div class="col-sm-3">
+      <img src="https://m.media-amazon.com/images/M/MV5BZjFiMGUzMTAtNDAwMC00ZjRhLTk0OTUtMmJiMzM5ZmVjODQxXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-3">
+      <img src="https://m.media-amazon.com/images/M/MV5BMTkzMzgzMTc1OF5BMl5BanBnXkFtZTgwNjQ4MzE0NjM@._V1_SY1000_CR0,0,678,1000_AL_.jpg" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-3">
+      <img src="https://m.media-amazon.com/images/M/MV5BOGQzZDM0NGUtZGE1NS00ZjQwLTk0N2EtMWI0NTgxYTkwYWQ4XkEyXkFqcGdeQXVyNDMzMzI5MjM@._V1_SY1000_CR0,0,648,1000_AL_.jpg" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-3">
+      <img src="https://m.media-amazon.com/images/M/MV5BMjM3ODc5NDEyOF5BMl5BanBnXkFtZTgwMTI4MDcxNjM@._V1_SY1000_CR0,0,631,1000_AL_.jpg" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+  </div>
+</div><br><br>
+
+<footer class="container-fluid text-center">
+  <h4>"Everything I learned I learned from the movies."  -- Audrey Hepburn</h4>
+</footer>
+
+</body>
+</html>
